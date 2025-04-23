@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maven-web-application-deployment
+spec:
+  replica: 3
+  selector:
+    matchLabels:
+      app: maven-app
+  template:
+    metadata:
+      labels:
+        app: maven-app
+    spec:
+      containers:
+      - name: 
+        image: ecr-registry/maven-web-application:1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
